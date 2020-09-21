@@ -213,14 +213,14 @@ def main():
     if args.use_virtual:
         alice = VirtualWorker(id="alice", hook=hook, verbose=args.verbose)
         bob = VirtualWorker(id="bob", hook=hook, verbose=args.verbose)
-        charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
+        #charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
     else:
         kwargs_websocket = {"host": "localhost", "hook": hook, "verbose": args.verbose}
         alice = WebsocketClientWorker(id="alice", port=8777, **kwargs_websocket)
         bob = WebsocketClientWorker(id="bob", port=8778, **kwargs_websocket)
-        charlie = WebsocketClientWorker(id="charlie", port=8779, **kwargs_websocket)
+        #charlie = WebsocketClientWorker(id="charlie", port=8779, **kwargs_websocket)
 
-    workers = [alice, bob, charlie]
+    workers = [alice, bob] #, charlie]
 
     use_cuda = args.cuda and torch.cuda.is_available()
 

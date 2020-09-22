@@ -217,9 +217,9 @@ def main():
     else:
         kwargs_websocket = {"host": "localhost", "hook": hook, "verbose": args.verbose}
 
-        alice = WebsocketClientWorker(id="alice", port=8777, **kwargs_websocket)
-        bob = WebsocketClientWorker(id="bob", port=8778, **kwargs_websocket)
-        charlie = WebsocketClientWorker(id="charlie", port=8779, **kwargs_websocket)
+        alice = WebsocketClientWorker(id="alice", port=10001, **kwargs_websocket)
+        bob = WebsocketClientWorker(id="bob", port=10002, **kwargs_websocket)
+        charlie = WebsocketClientWorker(id="charlie", port=10003, **kwargs_websocket)
 
     workers = [alice, bob, charlie]
     print(workers)

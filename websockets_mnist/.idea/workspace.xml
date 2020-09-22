@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/Federated learning with websockets and federated averaging.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/Federated learning with websockets and federated averaging.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/start_websocket_servers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/start_websocket_servers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Federated learning with websockets and federated averaging-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebsocketClientWorker(8181).py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebsocketClientWorker(8182).py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebsocketServerWorker..py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Federated learning with websockets and federated averaging.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Federated learning with websockets and federated averaging.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_websocket_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_websocket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start_websocket_servers.py" beforeDir="false" afterPath="$PROJECT_DIR$/start_websocket_servers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/syft)" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +43,7 @@
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.start_websocket_servers">
+  <component name="RunManager" selected="Python.run_websocket_client">
     <configuration name="run_websocket_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -119,9 +114,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run_websocket_client" />
         <item itemvalue="Python.start_websocket_servers" />
         <item itemvalue="Python.run_websocket_server" />
-        <item itemvalue="Python.run_websocket_client" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600687401798</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="m">
+      <created>1600760255367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600760255367</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -159,29 +161,29 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600685280903" />
-    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1600687400939">
+    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1600760253532">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687400939" />
-    <state width="1899" height="316" key="GridCell.Tab.0.bottom" timestamp="1600760224663">
+    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760253532" />
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom" timestamp="1600762231742">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600762231742" />
     <state width="1899" height="348" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613281" />
-    <state width="1899" height="316" key="GridCell.Tab.0.center" timestamp="1600760224663">
+    <state width="1899" height="316" key="GridCell.Tab.0.center" timestamp="1600762231742">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
+    <state width="1899" height="316" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600762231742" />
     <state width="1899" height="348" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
-    <state width="1899" height="316" key="GridCell.Tab.0.left" timestamp="1600760224663">
+    <state width="1899" height="316" key="GridCell.Tab.0.left" timestamp="1600762231742">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
+    <state width="1899" height="316" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600762231742" />
     <state width="1899" height="348" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
-    <state width="1899" height="316" key="GridCell.Tab.0.right" timestamp="1600760224663">
+    <state width="1899" height="316" key="GridCell.Tab.0.right" timestamp="1600762231742">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="316" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
+    <state width="1899" height="316" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600762231742" />
     <state width="1899" height="348" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1600744613281">
       <screen x="1920" y="106" width="1920" height="1040" />
@@ -203,10 +205,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="224" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600679659438" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1600687404711">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1600760256757">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687404711" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760256757" />
     <state x="2543" y="331" key="search.everywhere.popup" timestamp="1600741637232">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>

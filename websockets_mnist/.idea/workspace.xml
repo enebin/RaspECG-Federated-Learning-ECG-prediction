@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/WebsocketClientWorker(8181).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebsocketClientWorker(8182).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebsocketServerWorker..py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_server.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1hoKTwkCh60lf9vh5gRvR0auXPQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.WebsocketClientWorker(8182)">
+    <configuration name="WebsocketClientWorker(8182)" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\WebsocketClientWorker(8182).py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="WebsocketServerWorker." type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WebsocketServerWorker..py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.WebsocketServerWorker." />
+      <item itemvalue="Python.WebsocketClientWorker(8182)" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="" />
+      <created>1600672016006</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600672016006</updated>
+    </task>
+    <task id="LOCAL-00001" summary="m">
+      <created>1600687401797</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600687401798</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="m" />
+    <option name="LAST_COMMIT_MESSAGE" value="m" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600741813853">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600679795369" />
+    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741813853" />
+    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600685280903">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600685280903" />
+    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1600687400939">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687400939" />
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom" timestamp="1600742446037">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413963" />
+    <state width="1899" height="281" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600742446037" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center" timestamp="1600742446037">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413962" />
+    <state width="1899" height="281" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600742446037" />
+    <state width="1899" height="281" key="GridCell.Tab.0.left" timestamp="1600742446036">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413962" />
+    <state width="1899" height="281" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600742446036" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right" timestamp="1600742446037">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="321" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413963" />
+    <state width="1899" height="281" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600742446037" />
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1600741748041">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741748041" />
+    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1600741748041">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741748041" />
+    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1600741748041">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741748041" />
+    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1600741748041">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741748041" />
+    <state x="461" y="224" key="SettingsEditor" timestamp="1600679659438">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="461" y="224" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600679659438" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1600687404711">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687404711" />
+    <state x="2543" y="331" key="search.everywhere.popup" timestamp="1600741637232">
+      <screen x="1920" y="106" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="331" key="search.everywhere.popup/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741637232" />
+  </component>
+</project>

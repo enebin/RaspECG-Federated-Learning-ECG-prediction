@@ -15,7 +15,7 @@ local_worker = WebsocketServerWorker(
                             host="localhost",
                             hook=hook,
                             id=0,
-                            port=8777)
+                            port=8182)
 
 local_worker.start()  # Might need to interrupt with `CTRL-C` or some other means
 

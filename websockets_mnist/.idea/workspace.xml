@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebsocketClientWorker(8181).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebsocketClientWorker(8182).py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebsocketServerWorker..py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/Federated learning with websockets and federated averaging.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/Federated learning with websockets and federated averaging.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/start_websocket_servers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/advanced/websockets_mnist/start_websocket_servers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsocketClientWorker(8181).py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsocketClientWorker(8182).py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebsocketServerWorker..py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_websocket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start_websocket_servers.py" beforeDir="false" afterPath="$PROJECT_DIR$/start_websocket_servers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/syft)" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -41,8 +48,8 @@
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.WebsocketClientWorker(8182)">
-    <configuration name="WebsocketClientWorker(8182)" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.start_websocket_servers">
+    <configuration name="run_websocket_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -54,7 +61,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\WebsocketClientWorker(8182).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_websocket_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -63,7 +70,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="WebsocketServerWorker." type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="run_websocket_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -75,7 +82,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WebsocketServerWorker..py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_websocket_server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="start_websocket_servers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/start_websocket_servers.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -85,9 +113,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.WebsocketClientWorker(8182)" />
-      <item itemvalue="Python.WebsocketServerWorker." />
+      <item itemvalue="Python.start_websocket_servers" />
+      <item itemvalue="Python.run_websocket_client" />
+      <item itemvalue="Python.run_websocket_server" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.start_websocket_servers" />
+        <item itemvalue="Python.run_websocket_server" />
+        <item itemvalue="Python.run_websocket_client" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -109,14 +145,15 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="m" />
     <option name="LAST_COMMIT_MESSAGE" value="m" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600741813853">
-      <screen x="1920" y="106" width="1920" height="1040" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600760229547">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600679795369" />
+    <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760229547" />
     <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741813853" />
     <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600685280903">
       <screen x="0" y="0" width="1920" height="1160" />
@@ -126,25 +163,25 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687400939" />
-    <state width="1899" height="348" key="GridCell.Tab.0.bottom" timestamp="1600744613281">
-      <screen x="1920" y="106" width="1920" height="1040" />
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom" timestamp="1600760224663">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="321" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413963" />
+    <state width="1899" height="316" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
     <state width="1899" height="348" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613281" />
-    <state width="1899" height="348" key="GridCell.Tab.0.center" timestamp="1600744613280">
-      <screen x="1920" y="106" width="1920" height="1040" />
+    <state width="1899" height="316" key="GridCell.Tab.0.center" timestamp="1600760224663">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="321" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413962" />
+    <state width="1899" height="316" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
     <state width="1899" height="348" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
-    <state width="1899" height="348" key="GridCell.Tab.0.left" timestamp="1600744613280">
-      <screen x="1920" y="106" width="1920" height="1040" />
+    <state width="1899" height="316" key="GridCell.Tab.0.left" timestamp="1600760224663">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="321" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413962" />
+    <state width="1899" height="316" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
     <state width="1899" height="348" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
-    <state width="1899" height="348" key="GridCell.Tab.0.right" timestamp="1600744613280">
-      <screen x="1920" y="106" width="1920" height="1040" />
+    <state width="1899" height="316" key="GridCell.Tab.0.right" timestamp="1600760224663">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="321" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600687413963" />
+    <state width="1899" height="316" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760224663" />
     <state width="1899" height="348" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600744613280" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1600744613281">
       <screen x="1920" y="106" width="1920" height="1040" />

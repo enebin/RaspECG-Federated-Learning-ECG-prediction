@@ -213,14 +213,16 @@ def main():
     if args.use_virtual:
         alice = VirtualWorker(id="alice", hook=hook, verbose=args.verbose)
         bob = VirtualWorker(id="bob", hook=hook, verbose=args.verbose)
-        #charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
+        charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
     else:
         kwargs_websocket = {"host": "localhost", "hook": hook, "verbose": args.verbose}
+
         alice = WebsocketClientWorker(id="alice", port=8777, **kwargs_websocket)
         bob = WebsocketClientWorker(id="bob", port=8778, **kwargs_websocket)
-        #charlie = WebsocketClientWorker(id="charlie", port=8779, **kwargs_websocket)
+        charlie = WebsocketClientWorker(id="charlie", port=8779, **kwargs_websocket)
 
-    workers = [alice, bob] #, charlie]
+    workers = [alice, bob, charlie]
+    print(workers)
 
     use_cuda = args.cuda and torch.cuda.is_available()
 
@@ -229,7 +231,7 @@ def main():
     device = torch.device("cuda" if use_cuda else "cpu")
 
     kwargs = {"num_workers": 1, "pin_memory": True} if use_cuda else {}
-
+    print("PHASE")
     federated_train_loader = sy.FederatedDataLoader(
         datasets.MNIST(
             "../data",
@@ -261,6 +263,7 @@ def main():
     model = Net().to(device)
 
     for epoch in range(1, args.epochs + 1):
+        print(epoch)
         logger.info("Starting epoch %s/%s", epoch, args.epochs)
         model = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches)
         test(model, device, test_loader)

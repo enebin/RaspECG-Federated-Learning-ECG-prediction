@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as f
 import torch.optim as optim
+from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
 import logging
 import argparse
@@ -15,7 +16,7 @@ from syft.frameworks.torch.fl import utils
 logger = logging.getLogger(__name__)
 
 LOG_INTERVAL = 25
-
+writer = SummaryWriter()
 
 class Net(nn.Module):
     def __init__(self):
@@ -69,6 +70,10 @@ def train_on_batches(worker, batches, model_in, device, lr):
         if batch_idx % LOG_INTERVAL == 0:
             loss = loss.get()  # <-- NEW: get the loss back
             loss_local = True
+            writer.add_scalar('training loss',
+                              loss.item())
+            # ...무작위 미니배치(mini-batch)에 대한 모델의 예측 결과를 보여주도록
+            # Matplotlib Figure를 기록합니다
             logger.debug(
                 "Train Worker {}: [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
                     worker.id,
@@ -271,6 +276,41 @@ def main():
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")
 
+    class_probs = []
+    class_preds = []
+    with torch.no_grad():
+        for data in test_loader:
+            images, labels = data
+            net = Net()
+            output = net(images)
+            class_probs_batch = [f.softmax(el, dim=0) for el in output]
+            _, class_preds_batch = torch.max(output, 1)
+
+            class_probs.append(class_probs_batch)
+            class_preds.append(class_preds_batch)
+
+    test_probs = torch.cat([torch.stack(batch) for batch in class_probs])
+    test_preds = torch.cat(class_preds)
+
+    # 모든 정밀도-재현율(precision-recall; pr) 곡선을 그립니다
+    for i in range(len(classes)):
+        add_pr_curve_tensorboard(i, test_probs, test_preds)
+
+def add_pr_curve_tensorboard(class_index, test_probs, test_preds, global_step=0):
+    '''
+    0부터 9까지의 "class_index"를 가져온 후 해당 정밀도-재현율(precision-recall)
+    곡선을 그립니다
+    '''
+    tensorboard_preds = test_preds == class_index
+    tensorboard_probs = test_probs[:, class_index]
+
+    writer.add_pr_curve(classes[class_index],
+                        tensorboard_preds,
+                        tensorboard_probs,
+                        global_step=global_step)
+    writer.close()
+
+
 
 if __name__ == "__main__":
     FORMAT = "%(asctime)s %(levelname)s %(filename)s(l:%(lineno)d) - %(message)s"
@@ -281,4 +321,7 @@ if __name__ == "__main__":
     websockets_logger.setLevel(logging.DEBUG)
     websockets_logger.addHandler(logging.StreamHandler())
 
+    classes = [str(x) for x in range(10)]
+
     main()
+

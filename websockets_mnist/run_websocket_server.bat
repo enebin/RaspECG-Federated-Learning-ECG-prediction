@@ -8,4 +8,6 @@ start python ./run_websocket_server.py --port 10001 --id no1
 start python ./run_websocket_server.py --port 10002 --id no2
 start python ./run_websocket_server.py --port 10003 --id no3
 
+call jupyter notebook ./note.ipynb
+
 cmd /k

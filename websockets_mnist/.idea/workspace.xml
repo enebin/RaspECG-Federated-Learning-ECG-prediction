@@ -2,31 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/events.out.tfevents.1600828187.DESKTOP-N7R4GPQ.15336.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_websocket_server.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_11-46-46_DESKTOP-N7R4GPQ/events.out.tfevents.1600829206.DESKTOP-N7R4GPQ.12584.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830062.DESKTOP-N7R4GPQ.14956.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.7" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-01-02_DESKTOP-N7R4GPQ/events.out.tfevents.1600830697.DESKTOP-N7R4GPQ.14956.9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831285.DESKTOP-N7R4GPQ.8080.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.7" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runs/Sep23_12-21-25_DESKTOP-N7R4GPQ/events.out.tfevents.1600831915.DESKTOP-N7R4GPQ.8080.9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/Worker1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/Worker2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/Worker3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-50-34_DESKTOP-N7R4GPQ/events.out.tfevents.1601016634.DESKTOP-N7R4GPQ.12160.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-50-42_DESKTOP-N7R4GPQ/events.out.tfevents.1601016642.DESKTOP-N7R4GPQ.8280.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-50-54_DESKTOP-N7R4GPQ/events.out.tfevents.1601016654.DESKTOP-N7R4GPQ.7876.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-51-17_DESKTOP-N7R4GPQ/events.out.tfevents.1601016677.DESKTOP-N7R4GPQ.8808.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-51-20_DESKTOP-N7R4GPQ/events.out.tfevents.1601016680.DESKTOP-N7R4GPQ.12400.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-51-23_DESKTOP-N7R4GPQ/events.out.tfevents.1601016683.DESKTOP-N7R4GPQ.2000.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-53-05_DESKTOP-N7R4GPQ/events.out.tfevents.1601016785.DESKTOP-N7R4GPQ.5360.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-53-07_DESKTOP-N7R4GPQ/events.out.tfevents.1601016787.DESKTOP-N7R4GPQ.12368.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Workers/runs/Sep25_15-53-08_DESKTOP-N7R4GPQ/events.out.tfevents.1601016788.DESKTOP-N7R4GPQ.4184.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/processed/test.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/processed/training.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/t10k-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/t10k-images-idx3-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/t10k-labels-idx1-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/t10k-labels-idx1-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/train-images-idx3-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/train-images-idx3-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/train-labels-idx1-ubyte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/MNIST/raw/train-labels-idx1-ubyte.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runs/Sep24_17-01-43_DESKTOP-N7R4GPQ/events.out.tfevents.1600934503.DESKTOP-N7R4GPQ.6736.0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runs/Sep25_15-34-08_DESKTOP-N7R4GPQ/events.out.tfevents.1601015648.DESKTOP-N7R4GPQ.12752.0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events.out.tfevents.1600828187.DESKTOP-N7R4GPQ.15336.0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_websocket_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_server.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run_websocket_server.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,16 +58,80 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Workers" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\Workers" />
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.run_websocket_client">
+  <component name="RunManager" selected="Python.Worker3">
+    <configuration name="Worker1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Workers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Workers/Worker1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Worker2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Workers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Workers/Worker2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Worker3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="websockets_mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Workers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Workers/Worker3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run_websocket_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,37 +174,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="start_websocket_servers" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="websockets_mnist" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/start_websocket_servers.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.start_websocket_servers" />
       <item itemvalue="Python.run_websocket_client" />
       <item itemvalue="Python.run_websocket_server" />
+      <item itemvalue="Python.Worker1" />
+      <item itemvalue="Python.Worker2" />
+      <item itemvalue="Python.Worker3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_websocket_client" />
-        <item itemvalue="Python.start_websocket_servers" />
+        <item itemvalue="Python.Worker3" />
+        <item itemvalue="Python.Worker2" />
+        <item itemvalue="Python.Worker1" />
         <item itemvalue="Python.run_websocket_server" />
+        <item itemvalue="Python.run_websocket_client" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600760255367</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="m">
+      <created>1600832036154</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600832036154</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,33 +235,33 @@
     </state>
     <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760229547" />
     <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741813853" />
-    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600829220250">
+    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601016607870">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600829220250" />
-    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1600760253532">
+    <state x="727" y="380" key="#com.intellij.fileTypes.FileTypeChooser/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601016607870" />
+    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1600832034973">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760253532" />
-    <state width="1899" height="328" key="GridCell.Tab.0.bottom" timestamp="1600831993946">
+    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600832034973" />
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom" timestamp="1601016814740">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="328" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600831993946" />
+    <state width="1877" height="328" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601016814740" />
     <state width="1899" height="844" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600825164616" />
-    <state width="1899" height="328" key="GridCell.Tab.0.center" timestamp="1600831993945">
+    <state width="1877" height="328" key="GridCell.Tab.0.center" timestamp="1601016814740">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="328" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600831993945" />
+    <state width="1877" height="328" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601016814740" />
     <state width="1899" height="844" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600825164616" />
-    <state width="1899" height="328" key="GridCell.Tab.0.left" timestamp="1600831993945">
+    <state width="1877" height="328" key="GridCell.Tab.0.left" timestamp="1601016814740">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="328" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600831993945" />
+    <state width="1877" height="328" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601016814740" />
     <state width="1899" height="844" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600825164616" />
-    <state width="1899" height="328" key="GridCell.Tab.0.right" timestamp="1600831993945">
+    <state width="1877" height="328" key="GridCell.Tab.0.right" timestamp="1601016814740">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="328" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600831993945" />
+    <state width="1877" height="328" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601016814740" />
     <state width="1899" height="844" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600825164616" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1600744613281">
       <screen x="1920" y="106" width="1920" height="1040" />
@@ -225,10 +283,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="224" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600679659438" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1600760256757">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1600832050647">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600760256757" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1600832050647" />
     <state x="2543" y="331" key="search.everywhere.popup" timestamp="1600741637232">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>

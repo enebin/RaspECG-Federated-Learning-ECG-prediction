@@ -70,7 +70,7 @@ def train_on_batches(worker, batches, model_in, device, lr):
         if batch_idx % LOG_INTERVAL == 0:
             loss = loss.get()  # <-- NEW: get the loss back
             loss_local = True
-            writer.add_scalar('training loss',
+            writer.add_scalar('training_loss',
                               loss.item())
             # ...무작위 미니배치(mini-batch)에 대한 모델의 예측 결과를 보여주도록
             # Matplotlib Figure를 기록합니다

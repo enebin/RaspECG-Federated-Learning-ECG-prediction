@@ -1,0 +1,1 @@
+docker container run -v C:\:/home/workspace openmined/pysyft-notebook

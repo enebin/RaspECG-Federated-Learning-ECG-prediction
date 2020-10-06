@@ -4,10 +4,7 @@ call activate websockets_mnist
 
 set SERVER_NO = 3
 
-start python ./run_websocket_server.py --port 10001 --id no1
-start python ./run_websocket_server.py --port 10002 --id no2
-start python ./run_websocket_server.py --port 10003 --id no3
-
-call jupyter notebook ./note.ipynb
-
+start python ./run_websocket_server(0.2.3).py --port 10001 --id alice
+start python ./run_websocket_server(0.2.3).py --port 10002 --id bob
+start python ./run_websocket_server(0.2.3).py --port 10003 --id charlie
 cmd /k

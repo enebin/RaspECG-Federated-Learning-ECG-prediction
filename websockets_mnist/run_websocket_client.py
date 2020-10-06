@@ -221,7 +221,6 @@ def main():
         charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
     else:
         kwargs_websocket = {"host": "localhost", "hook": hook, "verbose": args.verbose}
-
         alice = WebsocketClientWorker(id="alice", port=10001, **kwargs_websocket)
         bob = WebsocketClientWorker(id="bob", port=10002, **kwargs_websocket)
         charlie = WebsocketClientWorker(id="charlie", port=10003, **kwargs_websocket)
@@ -292,15 +291,16 @@ def main():
     test_probs = torch.cat([torch.stack(batch) for batch in class_probs])
     test_preds = torch.cat(class_preds)
 
+'''
     # 모든 정밀도-재현율(precision-recall; pr) 곡선을 그립니다
     for i in range(len(classes)):
         add_pr_curve_tensorboard(i, test_probs, test_preds)
 
 def add_pr_curve_tensorboard(class_index, test_probs, test_preds, global_step=0):
-    '''
+'''    '''
     0부터 9까지의 "class_index"를 가져온 후 해당 정밀도-재현율(precision-recall)
     곡선을 그립니다
-    '''
+    ''''''
     tensorboard_preds = test_preds == class_index
     tensorboard_probs = test_probs[:, class_index]
 
@@ -309,7 +309,7 @@ def add_pr_curve_tensorboard(class_index, test_probs, test_preds, global_step=0)
                         tensorboard_probs,
                         global_step=global_step)
     writer.close()
-
+'''
 
 
 if __name__ == "__main__":

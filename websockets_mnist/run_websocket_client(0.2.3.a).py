@@ -203,7 +203,6 @@ def define_and_get_arguments(args=sys.argv[1:]):
 
 def main():
     args = define_and_get_arguments()
-
     hook = sy.TorchHook(torch)
 
     # 가상작업자(시뮬레이션) 사용시 이곳으로 분기
@@ -211,18 +210,19 @@ def main():
         alice = VirtualWorker(id="alice", hook=hook, verbose=args.verbose)
         bob = VirtualWorker(id="bob", hook=hook, verbose=args.verbose)
         charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
+        list_of_object = [alice, bob, charlie]
     # 웹소켓작업자 사용시 이곳으로 분기
     else:
-        a_kwargs_websocket = {"host": "192.168.0.52", "hook": hook}
-        b_kwargs_websocket = {"host": "192.168.0.53", "hook": hook}
-        c_kwargs_websocket = {"host": "192.168.0.54", "hook": hook}
+        base_port = 10002
+        list_of_id = ["alice", "bob", "charlie"]
+        list_of_ip = ["192.168.0.52", "192.168.0.53", "192.168.0.54"]
+        list_of_object = []
+        for index in range(len(list_of_id)):
+            kwargs_websockest = {"id": list_of_id[index], "hook": hook}
+            list_of_object.append(WebsocketClientWorker(host=list_of_ip[index], port=base_port,
+                                  **kwargs_websockest))
 
-        baseport = 10002
-        alice = WebsocketClientWorker(id="alice", port=baseport, **a_kwargs_websocket)
-        bob = WebsocketClientWorker(id="bob", port=baseport, **b_kwargs_websocket)
-        charlie = WebsocketClientWorker(id="charlie", port=baseport, **c_kwargs_websocket)
-
-    workers = [alice, bob, charlie]
+    workers = list_of_object
 
     use_cuda = args.cuda and torch.cuda.is_available()
 

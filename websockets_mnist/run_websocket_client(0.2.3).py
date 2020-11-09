@@ -55,6 +55,7 @@ def train_on_batches(worker, batches, model_in, device, lr):
     model.send(worker)
     loss_local = False
 
+    # todo 배치?
     for batch_idx, (data, target) in enumerate(batches):
         loss_local = False
         data, target = data.to(device), target.to(device)
@@ -222,8 +223,10 @@ def main():
         bob = WebsocketClientWorker(id="bob", port=baseport, **b_kwargs_websocket)
         charlie = WebsocketClientWorker(id="charlie", port=baseport, **c_kwargs_websocket)
 
+    # 객체를 리스트로 묶음
     workers = [alice, bob, charlie]
 
+    # 쿠다 사용 여부
     use_cuda = args.cuda and torch.cuda.is_available()
 
     torch.manual_seed(args.seed)
@@ -246,7 +249,6 @@ def main():
         iter_per_worker=True,
         **kwargs,
     )
-
     test_loader = torch.utils.data.DataLoader(
         datasets.MNIST(
             "../data",
@@ -263,6 +265,7 @@ def main():
     model = Net().to(device)
 
     for epoch in range(1, args.epochs + 1):
+        # output : 2020-11-05 15:07:04,953 INFO run_websocket_client(0.2.3).py(l:268) - Starting epoch 1/2
         logger.info("Starting epoch %s/%s", epoch, args.epochs)
         model = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches)
         test(model, device, test_loader)

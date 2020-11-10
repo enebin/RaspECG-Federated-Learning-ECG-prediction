@@ -4,6 +4,8 @@ import torch.nn.functional as f
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 from torchvision import datasets, transforms
+import matplotlib.pyplot as plt
+import numpy as np
 import logging
 import argparse
 import sys
@@ -118,7 +120,7 @@ def get_next_batches(fdataloader: sy.FederatedDataLoader, nr_batches: int):
 
 
 def train(
-    model, device, federated_train_loader, lr, federate_after_n_batches, abort_after_one=False
+    model, device, federated_train_loader, lr, federate_after_n_batches, test_loader, abort_after_one=False
 ):
     model.train()
 
@@ -130,6 +132,7 @@ def train(
     iter(federated_train_loader)  # initialize iterators
     batches = get_next_batches(federated_train_loader, nr_batches)
     counter = 0
+    accuracy_list = []
 
     while True:
         logger.debug(f"Starting training round, batches [{counter}, {counter + nr_batches}]")
@@ -151,7 +154,13 @@ def train(
         batches = get_next_batches(federated_train_loader, nr_batches)
         if abort_after_one:
             break
-    return model
+
+        accuracy_list.append(test(model, device, test_loader))
+
+        print("@#$@#$")
+        print(accuracy_list)
+
+    return model, accuracy_list
 
 
 def test(model, device, test_loader):
@@ -175,7 +184,7 @@ def test(model, device, test_loader):
             test_loss, correct, len(test_loader.dataset), accuracy
         )
     )
-
+    return accuracy
 
 def define_and_get_arguments(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(
@@ -236,45 +245,35 @@ def main():
 
     kwargs = {"num_workers": 1, "pin_memory": True} if use_cuda else {}
     print("PHASE")
-    federated_train_loader = sy.FederatedDataLoader(
-        datasets.MNIST(
-            "../data",
-            train=True,
-            download=True,
-            transform=transforms.Compose(
-                [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
-            ),
-        ).federate(tuple(workers)),
-        batch_size=args.batch_size,
-        shuffle=True,
-        iter_per_worker=True,
-        **kwargs,
-    )
 
-    test_loader = torch.utils.data.DataLoader(
-        datasets.MNIST(
-            "../data",
-            train=False,
-            transform=transforms.Compose(
-                [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
-            ),
-        ),
-        batch_size=args.test_batch_size,
-        shuffle=True,
-        **kwargs,
-    )
+    train_set = datasets.MNIST("../data", train=True, download=True,
+                               transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]))
+    test_set = datasets.MNIST("../data", train=False,
+                              transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]))
+
+    federated_train_loader = sy.FederatedDataLoader(train_set.federate(tuple(workers)),
+                                batch_size=args.batch_size,
+                                shuffle=True,
+                                iter_per_worker=True,
+                                **kwargs,)
+
+    test_loader = torch.utils.data.DataLoader(test_set, batch_size=args.test_batch_size, shuffle=True, **kwargs,)
 
     model = Net().to(device)
 
     for epoch in range(1, args.epochs + 1):
         print(epoch)
+        accrs = []
         logger.info("Starting epoch %s/%s", epoch, args.epochs)
-        model = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches)
+        model, accr = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches, test_loader = test_loader)
         test(model, device, test_loader)
+
+        accrs = accrs + accr
 
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")
 
+    # 텐서보드 파트 시작
     class_probs = []
     class_preds = []
     with torch.no_grad():
@@ -291,16 +290,64 @@ def main():
     test_probs = torch.cat([torch.stack(batch) for batch in class_probs])
     test_preds = torch.cat(class_preds)
 
-'''
+
     # 모든 정밀도-재현율(precision-recall; pr) 곡선을 그립니다
     for i in range(len(classes)):
         add_pr_curve_tensorboard(i, test_probs, test_preds)
+    '''
+    columns = 6
+    rows = 6
+    fig = plt.figure(figsize=(10, 10))
+
+    label_tags = {
+        0: '0',
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+        6: '6',
+        7: '7',
+        8: '8',
+        9: '9'
+    }
+
+    for i in range(1, columns * rows + 1):
+        data_idx = np.random.randint(len(test_set))
+        input_img = test_set[data_idx][0].unsqueeze(dim=0).to(device)
+
+        output = model(input_img)
+        _, argmax = torch.max(output, 1)
+        pred = label_tags[argmax.item()]
+        label = label_tags[test_set[data_idx][1]]
+
+        fig.add_subplot(rows, columns, i)
+        if pred == label:
+            plt.title(pred + ', Correct')
+            cmap = 'Blues'
+        else:
+            plt.title('Not ' + pred + ', but ' + label)
+            cmap = 'Reds'
+        plot_img = test_set[data_idx][0][0, :, :]
+        plt.imshow(plot_img, cmap=cmap)
+        plt.axis('off')
+        '''
+
+    print(accrs)
+    x_values = range(len(accrs))
+    y_values_1 = accrs
+    plt.plot(x_values, y_values_1)
+
+    plt.show()
+
+
 
 def add_pr_curve_tensorboard(class_index, test_probs, test_preds, global_step=0):
-'''    '''
+    '''
     0부터 9까지의 "class_index"를 가져온 후 해당 정밀도-재현율(precision-recall)
     곡선을 그립니다
-    ''''''
+    '''
+
     tensorboard_preds = test_preds == class_index
     tensorboard_probs = test_probs[:, class_index]
 
@@ -308,9 +355,8 @@ def add_pr_curve_tensorboard(class_index, test_probs, test_preds, global_step=0)
                         tensorboard_preds,
                         tensorboard_probs,
                         global_step=global_step)
-    writer.close()
-'''
 
+    writer.close()
 
 if __name__ == "__main__":
     FORMAT = "%(asctime)s %(levelname)s %(filename)s(l:%(lineno)d) - %(message)s"

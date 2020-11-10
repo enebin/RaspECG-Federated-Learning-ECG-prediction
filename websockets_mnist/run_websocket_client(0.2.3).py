@@ -228,12 +228,11 @@ def main():
 
     # 쿠다 사용 여부
     use_cuda = args.cuda and torch.cuda.is_available()
-
-    torch.manual_seed(args.seed)
-
     device = torch.device("cuda" if use_cuda else "cpu")
-
     kwargs = {"num_workers": 1, "pin_memory": True} if use_cuda else {}
+
+    # 랜덤 시드 설정
+    torch.manual_seed(args.seed)
 
     federated_train_loader = sy.FederatedDataLoader(
         datasets.MNIST(

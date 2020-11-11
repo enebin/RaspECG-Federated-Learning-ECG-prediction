@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ECG_source/model_ecg_heartbeat_categorization_4.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FL_ECG.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECG_source/ECG(torch).py" beforeDir="false" afterPath="$PROJECT_DIR$/ECG_source/ECG(torch).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_client(0.2.3).py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_client(0.2.3).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_client(0.2.3.a).py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_client(0.2.3.a).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_server(0.2.3).py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_server(0.2.3).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_server.bat" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_server.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_websocket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start_websocket_servers.py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/start_websocket_servers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +37,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
@@ -84,7 +91,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_websocket_client.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\FLs\run_websocket_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,7 +112,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_websocket_client(0.2.3).py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\FLs\run_websocket_client(0.2.3).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -194,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604996310667</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="m">
+      <created>1605068489145</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605068489145</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -217,34 +231,34 @@
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="2610" y="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1602122201591" />
-    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1604996308635">
+    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1605068488236">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1604996308635" />
+    <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605068488236" />
     <state x="2497" y="237" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604887739329" />
     <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1601017746212">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="334" key="FileChooserDialogImpl/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601017746212" />
-    <state width="1899" height="656" key="GridCell.Tab.0.bottom" timestamp="1605065578901">
+    <state width="1899" height="656" key="GridCell.Tab.0.bottom" timestamp="1605070723494">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="656" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605065578901" />
+    <state width="1899" height="656" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605070723494" />
     <state width="1899" height="284" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604896542395" />
-    <state width="1899" height="656" key="GridCell.Tab.0.center" timestamp="1605065578901">
+    <state width="1899" height="656" key="GridCell.Tab.0.center" timestamp="1605070723494">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="656" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605065578901" />
+    <state width="1899" height="656" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605070723494" />
     <state width="1899" height="284" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604896542395" />
-    <state width="1899" height="656" key="GridCell.Tab.0.left" timestamp="1605065578901">
+    <state width="1899" height="656" key="GridCell.Tab.0.left" timestamp="1605070723494">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="656" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605065578901" />
+    <state width="1899" height="656" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605070723494" />
     <state width="1899" height="284" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604896542395" />
-    <state width="1899" height="656" key="GridCell.Tab.0.right" timestamp="1605065578901">
+    <state width="1899" height="656" key="GridCell.Tab.0.right" timestamp="1605070723494">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1899" height="656" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605065578901" />
+    <state width="1899" height="656" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605070723494" />
     <state width="1899" height="284" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604896542395" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1600744613281">
       <screen x="1920" y="106" width="1920" height="1040" />
@@ -267,10 +281,10 @@
     </state>
     <state x="461" y="224" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605062819978" />
     <state x="2381" y="307" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604888244726" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1604996314712">
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1605068493417">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1604996314712" />
+    <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605068493417" />
     <state x="2472" y="386" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604887742030" />
     <state x="2588" y="266" width="594" height="721" key="find.popup" timestamp="1604897897139">
       <screen x="1920" y="106" width="1920" height="1040" />

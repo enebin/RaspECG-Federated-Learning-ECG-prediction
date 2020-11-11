@@ -99,6 +99,7 @@ def add_amplify_and_stretch_noise(x):
 
 
 obs_resampled_with_noise_2 = np.array([add_amplify_and_stretch_noise(obs) for obs in obs_resampled])
+### Processing done ###
 
 # number of subprocesses to use for data loading
 num_workers = 0

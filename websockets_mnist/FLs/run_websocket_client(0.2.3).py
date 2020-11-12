@@ -59,11 +59,13 @@ def train_on_batches(worker, batches, model_in, device, lr):
     for batch_idx, (data, target) in enumerate(batches):
         loss_local = False
         data, target = data.to(device), target.to(device)
+
         optimizer.zero_grad()
         output = model(data)
         loss = f.nll_loss(output, target)
         loss.backward()
         optimizer.step()
+
         if batch_idx % LOG_INTERVAL == 0:
             loss = loss.get()  # <-- NEW: get the loss back
             loss_local = True

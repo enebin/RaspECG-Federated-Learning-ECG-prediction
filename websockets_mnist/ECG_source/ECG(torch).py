@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np  # linear algebra
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import sklearn.utils as skl
@@ -12,7 +13,75 @@ from torch.utils.data.sampler import SubsetRandomSampler
 random_seed = 1024
 np.random.seed(random_seed)
 
-# Any results you write to the current directory are saved as output.
+
+# define the 1st architecture (from the paper)
+class Net2(nn.Module):
+    def __init__(self, input_features, output_dim):
+        super(Net2, self).__init__()
+        # 1-dimensional convolutional layer
+        self.conv0 = nn.Conv1d(input_features, 128, output_dim, stride=1, padding=0)
+        self.conv1 = nn.Conv1d(128, 128, output_dim, stride=1, padding=2)
+
+        # max pooling layer
+        self.pool1 = nn.MaxPool1d(5, 2)
+
+        # fully-connected layer
+        self.fc1 = nn.Linear(256, 32)
+        self.fc2 = nn.Linear(32, output_dim)
+
+        # softmax output
+        self.softmax = nn.LogSoftmax(dim=1)
+
+    def forward(self, x):
+        # add sequence of convolutional and max pooling layers
+
+        inp = x.view(32, -1, 187)
+        C = self.conv0(inp)
+
+        # first conv layer
+        C11 = self.conv0(inp)
+        A11 = F.relu(C11)
+        C12 = self.conv1(A11)
+        S11 = torch.add(C12, C)
+        M11 = self.pool1(S11)
+
+        # second conv layer
+        C21 = self.conv1(M11)
+        A21 = F.relu(C21)
+        C22 = self.conv1(A21)
+        S21 = torch.add(C22, M11)
+        M21 = self.pool1(S21)
+
+        # third conv layer
+        C31 = self.conv1(M21)
+        A31 = F.relu(C31)
+        C32 = self.conv1(A31)
+        S31 = torch.add(C32, M21)
+        M31 = self.pool1(S31)
+
+        # fourth conv layer
+        C41 = self.conv1(M31)
+        A41 = F.relu(C41)
+        C42 = self.conv1(A41)
+        S41 = torch.add(C42, M31)
+        M41 = self.pool1(S41)
+
+        # last layer
+        C51 = self.conv1(M41)
+        A51 = F.relu(C51)
+        C52 = self.conv1(A51)
+        S51 = torch.add(C52, M41)
+        M51 = self.pool1(S51)
+
+        # flatten the output of the last layer
+        F1 = M51.view(32, -1)
+
+        D1 = self.fc1(F1)
+        A6 = F.relu(D1)
+        D2 = self.fc2(A6)
+
+        return self.softmax(D2)
+
 
 # Data Exploration (MIT-BIH)
 mitbih_train_loc = "C:/Users/Lee/Downloads/archive/mitbih_train.csv"
@@ -98,27 +167,27 @@ def add_amplify_and_stretch_noise(x):
     return new_y
 
 
+# convert labels_resampled to its integer encoding of the following listing:
+#     0: 'N - Normal Beat'
+#     1: 'S - Supraventricular premature or ectopic beat'
+#     2: 'V - Premature ventricular contraction'
+#     3: 'F - Fusion of ventricular and normal beat'
+#     4: 'Q - Unclassified beat
+labels_resampled_factorized = pd.factorize(labels_resampled.astype('category'))[0]
 obs_resampled_with_noise_2 = np.array([add_amplify_and_stretch_noise(obs) for obs in obs_resampled])
-### Processing done ###
 
-# number of subprocesses to use for data loading
-num_workers = 0
-# percentage of training set to use for testing and validation
-test_valid_size = 0.2
 # percentage of test/valid set to use for testing and validation from the test_valid_idx (to be called test_size)
-test_size = 0.5
+test_size = 0.1
 
 # obtain training indices that will be used for validation
 num_train = len(obs_resampled)
 indices = list(range(num_train))
 np.random.shuffle(indices)
-split = int(np.floor(test_valid_size * num_train))
-train_idx, test_valid_idx = indices[split:], indices[:split]
+split = int(np.floor(test_size * num_train))
+train_idx, test_idx = indices[split:], indices[:split]
 
-# split test_valid_idx to test_idx and valid_idx
-num_test_valid = len(test_valid_idx)
-test_valid_split = int(num_test_valid * test_size)
-test_idx, valid_idx = test_valid_idx[:test_valid_split], test_valid_idx[test_valid_split:]
+# Batch Size of 32
+batch_size = 32
 
 
 def convert_to_loader(X, y, batch_size):
@@ -132,104 +201,20 @@ def convert_to_loader(X, y, batch_size):
     return loader
 
 
-# convert labels_resampled to its integer encoding of the following listing:
-#     0: 'N - Normal Beat'
-#     1: 'S - Supraventricular premature or ectopic beat'
-#     2: 'V - Premature ventricular contraction'
-#     3: 'F - Fusion of ventricular and normal beat'
-#     4: 'Q - Unclassified beat
-labels_resampled_factorized = pd.factorize(labels_resampled.astype('category'))[0]
-
-# now we create separate data loaders for both datasets with different data augmentation. Models will be trained for each
-
-
-# Batch Size of 32
-batch_size = 32
-
-# for data augmentation v2 (Amplify and Stretch)
+# now we create separate data loaders for both datasets with different data augmentation. Models will be trained for
+# each for data augmentation v2 (Amplify and Stretch)
 train_loader_2 = convert_to_loader(obs_resampled_with_noise_2[train_idx],
                                    labels_resampled_factorized[train_idx],
                                    batch_size)
-valid_loader_2 = convert_to_loader(obs_resampled_with_noise_2[valid_idx],
-                                   labels_resampled_factorized[valid_idx],
-                                   batch_size)
+
 test_loader_2 = convert_to_loader(obs_resampled_with_noise_2[test_idx],
                                   labels_resampled_factorized[test_idx],
                                   batch_size)
 
-
-# define the 1st architecture (from the paper)
-class Net2(nn.Module):
-    def __init__(self, input_features, output_dim):
-        super(Net2, self).__init__()
-        # 1-dimensional convolutional layer
-        self.conv0 = nn.Conv1d(input_features, 128, output_dim, stride=1, padding=0)
-        self.conv1 = nn.Conv1d(128, 128, output_dim, stride=1, padding=2)
-
-        # max pooling layer
-        self.pool1 = nn.MaxPool1d(5, 2)
-
-        # fully-connected layer
-        self.fc1 = nn.Linear(256, 32)
-        self.fc2 = nn.Linear(32, output_dim)
-
-        # softmax output
-        self.softmax = nn.LogSoftmax(dim=1)
-
-    def forward(self, x):
-        # add sequence of convolutional and max pooling layers
-
-        inp = x.view(32, -1, 187)
-        C = self.conv0(inp)
-
-        # first conv layer
-        C11 = self.conv0(inp)
-        A11 = F.relu(C11)
-        C12 = self.conv1(A11)
-        S11 = torch.add(C12, C)
-        M11 = self.pool1(S11)
-
-        # second conv layer
-        C21 = self.conv1(M11)
-        A21 = F.relu(C21)
-        C22 = self.conv1(A21)
-        S21 = torch.add(C22, M11)
-        M21 = self.pool1(S21)
-
-        # third conv layer
-        C31 = self.conv1(M21)
-        A31 = F.relu(C31)
-        C32 = self.conv1(A31)
-        S31 = torch.add(C32, M21)
-        M31 = self.pool1(S31)
-
-        # fourth conv layer
-        C41 = self.conv1(M31)
-        A41 = F.relu(C41)
-        C42 = self.conv1(A41)
-        S41 = torch.add(C42, M31)
-        M41 = self.pool1(S41)
-
-        # last layer
-        C51 = self.conv1(M41)
-        A51 = F.relu(C51)
-        C52 = self.conv1(A51)
-        S51 = torch.add(C52, M41)
-        M51 = self.pool1(S51)
-
-        # flatten the output of the last layer
-        F1 = M51.view(32, -1)
-
-        D1 = self.fc1(F1)
-        A6 = F.relu(D1)
-        D2 = self.fc2(A6)
-
-        return self.softmax(D2)
-
+# ------ Processing done ------ #
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model2 = Net2(input_features=2, output_dim=5).to(device)
-
 
 # check if CUDA is available
 train_on_gpu = torch.cuda.is_available()
@@ -240,23 +225,21 @@ else:
     print('CUDA is available!  Training on GPU ...')
 
 # number of epochs
-num_epochs = 50
+num_epochs = 30
 
 
-def train_by_model_and_custom_loader(model, train_loader, valid_loader, criterion, optimizer, best_model_name, n_epochs,
-                                     train_on_gpu):
+def train_by_model_and_custom_loader(model, train_loader, criterion, optimizer, n_epochs, train_on_gpu):
     model = model.float()
+
+    train_losses = []
     # move tensors to GPU if CUDA is available
     if train_on_gpu:
         model.cuda()
-    valid_loss_min = np.Inf  # track change in validation loss
-    valid_losses = []
 
     for epoch in range(1, n_epochs + 1):
 
         # keep track of training and validation loss
         train_loss = 0.0
-        valid_loss = 0.0
 
         ###################
         # train the model #
@@ -280,40 +263,14 @@ def train_by_model_and_custom_loader(model, train_loader, valid_loader, criterio
             # update training loss
             train_loss += loss.item() * data.size(0)
 
-        ######################
-        # validate the model #
-        ######################
-        model.eval()
-        for data, target in valid_loader:
-            # move tensors to GPU if CUDA is available
-            if train_on_gpu:
-                data, target = data.cuda(), target.cuda()
-            # forward pass: compute predicted outputs by passing inputs to the model
-            output = model(data.float())
-            # calculate the batch loss
-            loss = criterion(output, target)
-            # update average validation loss
-            valid_loss += loss.item() * data.size(0)
-
         # calculate average losses
         train_loss = train_loss / len(train_loader.dataset)
-        valid_loss = valid_loss / len(valid_loader.dataset)
-
-        valid_losses.append(valid_loss)
+        train_losses.append(train_loss)
 
         # print training/validation statistics
-        print('Epoch: {} \tTraining Loss: {:.6f} \tValidation Loss: {:.6f}'.format(
-            epoch, train_loss, valid_loss))
+        print('Epoch: {} \tTraining Loss: {:.6f}'.format(epoch, train_loss))
 
-        # save model if validation loss has decreased
-        if valid_loss <= valid_loss_min:
-            print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
-                valid_loss_min,
-                valid_loss))
-            torch.save(model.state_dict(), best_model_name)
-            valid_loss_min = valid_loss
-
-    return valid_losses
+    return train_losses
 
 
 # create a complete CNN
@@ -323,14 +280,11 @@ criterion = nn.NLLLoss()
 
 # specify optimizer
 optimizer = optim.Adam(model_4.parameters(), lr=0.001)
-model_4_validation_losses = train_by_model_and_custom_loader(model_4, train_loader_2, valid_loader_2, criterion,
-                                                             optimizer, 'model_ecg_heartbeat_categorization_4.pt',
-                                                             num_epochs, train_on_gpu)
+model_train_losses = train_by_model_and_custom_loader(model_4, train_loader_2, criterion, optimizer, num_epochs,
+                                                      train_on_gpu)
 
 
-def evaluate_model(model, test_loader, criterion, best_model_name):
-    model.load_state_dict(torch.load(best_model_name))
-
+def evaluate_model(model, test_loader, criterion):
     # Specify the heartbeat classes from above
     classes = {
         0: 'N - Normal Beat',
@@ -384,4 +338,12 @@ def evaluate_model(model, test_loader, criterion, best_model_name):
         np.sum(class_correct), np.sum(class_total)))
 
 
-evaluate_model(model_4, test_loader_2, criterion, 'model_ecg_heartbeat_categorization_4.pt')
+evaluate_model(model_4, test_loader_2, criterion)
+
+losses = {
+    "model": model_train_losses
+}
+
+plt.plot('model', data=losses)
+plt.title("Validation Losses of All Models")
+plt.legend(losses.keys())

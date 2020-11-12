@@ -7,7 +7,7 @@ import random
 import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data.sampler import SubsetRandomSampler
+import torch.utils.data as D
 
 import syft as sy
 from syft.workers.websocket_client import WebsocketClientWorker
@@ -20,6 +20,9 @@ import sys
 
 logger = logging.getLogger(__name__)
 LOG_INTERVAL = 25
+
+random_seed = 1024
+np.random.seed(random_seed)
 
 
 # define the 1st architecture (from the paper)
@@ -91,22 +94,176 @@ class Net(nn.Module):
         return self.softmax(D2)
 
 
-def train_on_batches(worker, batches, model_in, device, lr=0.001):
+class Net2(nn.Module):
+    def __init__(self):
+        super(Net2, self).__init__()
+        self.conv1 = nn.Conv2d(1, 20, 5, 1)
+        self.conv2 = nn.Conv2d(20, 50, 5, 1)
+        self.fc1 = nn.Linear(4 * 4 * 50, 500)
+        self.fc2 = nn.Linear(500, 10)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        x = F.max_pool2d(x, 2, 2)
+        x = F.relu(self.conv2(x))
+        x = F.max_pool2d(x, 2, 2)
+        x = x.view(-1, 4 * 4 * 50)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return F.log_softmax(x, dim=1)
+
+
+def process_data():
+    # second version of adding random noise (Amplify and Stretch)
+    def stretch(x):
+        l = int(187 * (1 + (random.random() - 0.5) / 3))
+        y = sci.resample(x, l)
+        if l < 187:
+            y_ = np.zeros(shape=(187,))
+            y_[:l] = y
+        else:
+            y_ = y[:187]
+        return y_
+
+    def amplify(x):
+        alpha = (random.random() - 0.5)
+        factor = -alpha * x + (1 + alpha)
+        return x * factor
+
+    def add_amplify_and_stretch_noise(x):
+        result = np.zeros(shape=187)
+        if random.random() < 0.33:
+            new_y = stretch(x)
+        elif random.random() < 0.66:
+            new_y = amplify(x)
+        else:
+            new_y = stretch(x)
+            new_y = amplify(new_y)
+        return new_y
+
+    # Data Exploration (MIT-BIH)
+    mitbih_train_loc = "C:/Users/Lee/Downloads/archive/mitbih_train.csv"
+    mitbih_test_loc = "C:/Users/Lee/Downloads/archive/mitbih_test.csv"
+    mitbih_train_df = pd.read_csv(mitbih_train_loc, header=None)
+    mitbih_test_df = pd.read_csv(mitbih_test_loc, header=None)
+
+    dataset = pd.concat([mitbih_train_df, mitbih_test_df], axis=0, sort=True).reset_index(drop=True)
+
+    labels = dataset.iloc[:, -1].astype('category').map({
+        0: 'N - Normal Beat',
+        1: 'S - Supraventricular premature or ectopic beat',
+        2: 'V - Premature ventricular contraction',
+        3: 'F - Fusion of ventricular and normal beat',
+        4: 'Q - Unclassified beat'})
+
+    # since the last column is the category
+    obs = np.array(dataset.iloc[:, :187])
+
+    # get the indexes of all labels
+    n_indexes = labels.index[labels == 'N - Normal Beat']
+    q_indexes = labels.index[labels == 'Q - Unclassified beat']
+    v_indexes = labels.index[labels == 'V - Premature ventricular contraction']
+    s_indexes = labels.index[labels == 'S - Supraventricular premature or ectopic beat']
+    f_indexes = labels.index[labels == 'F - Fusion of ventricular and normal beat']
+
+    # resample indexes of each class
+    n_indexes_resampled = skl.resample(n_indexes, replace=True, n_samples=10000, random_state=random_seed)
+    q_indexes_resampled = skl.resample(q_indexes, replace=True, n_samples=10000, random_state=random_seed)
+    v_indexes_resampled = skl.resample(v_indexes, replace=True, n_samples=10000, random_state=random_seed)
+    s_indexes_resampled = skl.resample(s_indexes, replace=True, n_samples=10000, random_state=random_seed)
+    f_indexes_resampled = skl.resample(f_indexes, replace=True, n_samples=10000, random_state=random_seed)
+
+    # initialize the labels_resampled to empty pandas series
+    labels_resampled = pd.Series([])
+    obs_resampled = None
+
+    # add all indexes_resampled for all classes to iterate
+    label_indexes_list = [n_indexes_resampled,
+                          q_indexes_resampled,
+                          v_indexes_resampled,
+                          s_indexes_resampled,
+                          f_indexes_resampled]
+
+    for label_indexes in label_indexes_list:
+        # append labels for all resampled classes
+        labels_resampled = labels_resampled.append(labels[label_indexes], ignore_index=True)
+
+        # append observations for all resampled classes
+        if obs_resampled is None:
+            obs_resampled = obs[label_indexes]
+        else:
+            obs_resampled = np.concatenate((obs_resampled, obs[label_indexes]))
+
+    # convert labels_resampled to its integer encoding of the following listing:
+    #     0: 'N - Normal Beat'
+    #     1: 'S - Supraventricular premature or ectopic beat'
+    #     2: 'V - Premature ventricular contraction'
+    #     3: 'F - Fusion of ventricular and normal beat'
+    #     4: 'Q - Unclassified beat
+    # ---------------------------------------------------------------------------- #
+    labs = pd.factorize(labels_resampled.astype('category'))[0]
+    obs = np.array([add_amplify_and_stretch_noise(obs) for obs in obs_resampled])
+
+    return labs, obs
+
+
+def define_and_get_arguments(args=sys.argv[1:]):
+    parser = argparse.ArgumentParser(
+        description="Run federated learning using websocket client workers."
+    )
+    parser.add_argument("--batch_size", type=int, default=32, help="batch size of the training")
+    parser.add_argument(
+        "--test_batch_size", type=int, default=1000, help="batch size used for the test data"
+    )
+    parser.add_argument("--epochs", type=int, default=2, help="number of epochs to train")
+    parser.add_argument(
+        "--federate_after_n_batches",
+        type=int,
+        default=50,
+        help="number of training steps performed on each remote worker " "before averaging",
+    )
+    parser.add_argument("--lr", type=float, default=0.001, help="learning rate")
+    parser.add_argument("--cuda", action="store_true", help="use cuda")
+    parser.add_argument("--seed", type=int, default=1, help="seed used for randomization")
+    parser.add_argument("--save_model", action="store_true", help="if set, model will be saved")
+    parser.add_argument(
+        "--verbose",
+        "-v",
+        action="store_true",
+        help="if set, websocket client workers will " "be started in verbose mode",
+    )
+    parser.add_argument(
+        "--use_virtual", action="store_true", help="if set, virtual workers will be used"
+    )
+
+    args = parser.parse_args(args=args)
+    return args
+
+
+def train_on_batches(worker, batches, model_in, device, criterion, lr=0.001):
     model = model_in.copy()
     optimizer = optim.Adam(model.parameters(), lr=lr)
+
+    model = model.float()
     model.train()
     model.send(worker)
     loss_local = False
-
     for batch_idx, (data, target) in enumerate(batches):
         loss_local = False
         data, target = data.to(device), target.to(device)
 
-        # Start learning routine
+        if batch_idx == 9999:
+            print(data.get(), target.get())
+
+        # clear the gradients of all optimized variables
         optimizer.zero_grad()
-        output = model(data)
-        loss = F.nll_loss(output, target)
+        # forward pass: compute predicted outputs by passing inputs to the model
+        output = model(data.float())
+        # calculate the batch loss
+        loss = criterion(output, target)
+        # backward pass: compute gradient of the loss with respect to model parameters
         loss.backward()
+        # perform a single optimization step (parameter update)
         optimizer.step()
 
         # Calculating loss
@@ -145,7 +302,7 @@ def get_next_batches(fdataloader: sy.FederatedDataLoader, nr_batches: int):
 
 
 def train(
-    model, device, federated_train_loader, lr, federate_after_n_batches, abort_after_one=False
+        model, device, federated_train_loader, lr, federate_after_n_batches, abort_after_one=False
 ):
     model.train()
 
@@ -153,6 +310,7 @@ def train(
 
     models = {}
     loss_values = {}
+    criterion = nn.NLLLoss()
 
     iter(federated_train_loader)  # initialize iterators
     batches = get_next_batches(federated_train_loader, nr_batches)
@@ -167,11 +325,12 @@ def train(
             curr_batches = batches[worker]
             if curr_batches:
                 models[worker], loss_values[worker] = train_on_batches(
-                    worker, curr_batches, model, device, lr
+                    worker, curr_batches, model, device, criterion, lr
                 )
-            else:
+            elif len(curr_batches) < 50:
                 data_for_all_workers = False
         counter += nr_batches
+
         if not data_for_all_workers:
             logger.debug("At least one worker ran out of data, stopping.")
             break
@@ -206,37 +365,12 @@ def test(model, device, test_loader):
     )
 
 
-def define_and_get_arguments(args=sys.argv[1:]):
-    parser = argparse.ArgumentParser(
-        description="Run federated learning using websocket client workers."
-    )
-    parser.add_argument("--batch_size", type=int, default=64, help="batch size of the training")
-    parser.add_argument(
-        "--test_batch_size", type=int, default=1000, help="batch size used for the test data"
-    )
-    parser.add_argument("--epochs", type=int, default=2, help="number of epochs to train")
-    parser.add_argument(
-        "--federate_after_n_batches",
-        type=int,
-        default=50,
-        help="number of training steps performed on each remote worker " "before averaging",
-    )
-    parser.add_argument("--lr", type=float, default=0.01, help="learning rate")
-    parser.add_argument("--cuda", action="store_true", help="use cuda")
-    parser.add_argument("--seed", type=int, default=1, help="seed used for randomization")
-    parser.add_argument("--save_model", action="store_true", help="if set, model will be saved")
-    parser.add_argument(
-        "--verbose",
-        "-v",
-        action="store_true",
-        help="if set, websocket client workers will " "be started in verbose mode",
-    )
-    parser.add_argument(
-        "--use_virtual", action="store_true", help="if set, virtual workers will be used"
-    )
+def convert_to_dataset(x, y):
+    data = []
+    for i in range(len(x)):
+        data.append([x[i], y[i]])
 
-    args = parser.parse_args(args=args)
-    return args
+    return data
 
 
 def main():
@@ -260,7 +394,7 @@ def main():
         bob = WebsocketClientWorker(id="bob", port=baseport, **b_kwargs_websocket)
         charlie = WebsocketClientWorker(id="charlie", port=baseport, **c_kwargs_websocket)
 
-    # 객체를 리스트로 묶음
+    # 워커 객체를 리스트로 묶음
     workers = [alice, bob, charlie]
 
     # 쿠다 사용 여부
@@ -271,27 +405,40 @@ def main():
     # 랜덤 시드 설정
     torch.manual_seed(args.seed)
 
-    # todo Add dataset
+    labels_resampled_factorized, obs_resampled_with_noise_2 = process_data()
+
+    # percentage of test/valid set to use for testing and validation from the test_valid_idx (to be called test_size)
+    test_size = 0.1
+
+    # obtain training indices that will be used for validation
+    num_train = len(obs_resampled_with_noise_2)
+    indices = list(range(num_train))
+    np.random.shuffle(indices)
+    split = int(np.floor(test_size * num_train))
+    train_idx, test_idx = indices[split:], indices[:split]
+
+    federated_train_dataset = D.TensorDataset(torch.tensor(obs_resampled_with_noise_2[train_idx]),
+                                              torch.tensor(labels_resampled_factorized[train_idx]))
+
     federated_train_loader = sy.FederatedDataLoader(
-        datasets.MNIST().federate(tuple(workers)),
-        batch_size=args.batch_size,
-        shuffle=True,
-        iter_per_worker=True,
-        **kwargs,
-    )
+                                                    federated_train_dataset.federate(tuple(workers)),
+                                                    batch_size=args.batch_size,
+                                                    shuffle=True,
+                                                    iter_per_worker=True,
+                                                    **kwargs,
+                                                    )
 
-    # todo Add dataset
-    test_loader = torch.utils.data.DataLoader(
-        datasets.MNIST(),
-        batch_size=args.test_batch_size,
-        shuffle=True,
-        **kwargs,
-    )
+    test_dataset = D.TensorDataset(torch.tensor(obs_resampled_with_noise_2[test_idx]),
+                                   torch.tensor(labels_resampled_factorized[test_idx]))
 
-    model = Net().to(device)
+    test_loader = D.DataLoader(test_dataset, shuffle=True, batch_size=args.batch_size,
+                             num_workers=0, drop_last=True)
+
+    model = Net(input_features=1, output_dim=5).to(device)
+    # model = Net2().to(device)
+
 
     for epoch in range(1, args.epochs + 1):
-        # output : 2020-11-05 15:07:04,953 INFO run_websocket_client(0.2.3).py(l:268) - Starting epoch 1/2
         logger.info("Starting epoch %s/%s", epoch, args.epochs)
         model = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches)
         test(model, device, test_loader)
@@ -310,34 +457,3 @@ if __name__ == "__main__":
     websockets_logger.addHandler(logging.StreamHandler())
 
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -323,12 +323,12 @@ def train(
         data_for_all_workers = True
         for worker in batches:
             curr_batches = batches[worker]
-            if curr_batches:
+            if len(curr_batches) < 50:
+                data_for_all_workers = False
+            elif curr_batches:
                 models[worker], loss_values[worker] = train_on_batches(
                     worker, curr_batches, model, device, criterion, lr
                 )
-            elif len(curr_batches) < 50:
-                data_for_all_workers = False
         counter += nr_batches
 
         if not data_for_all_workers:

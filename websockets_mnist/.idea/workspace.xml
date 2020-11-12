@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../tutorials/Part 07 - Federated Learning with Federated Dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/Part 07 - Federated Learning with Federated Dataset.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tutorials/advanced/Federated Dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../tutorials/advanced/Federated Dataset.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ECG_source/ECG(torch).py" beforeDir="false" afterPath="$PROJECT_DIR$/ECG_source/ECG(torch).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FL_ECG.py" beforeDir="false" afterPath="$PROJECT_DIR$/FL_ECG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FLs/run_websocket_client(0.2.3).py" beforeDir="false" afterPath="$PROJECT_DIR$/FLs/run_websocket_client(0.2.3).py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605082628621</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="m">
+      <created>1605166411146</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605166411146</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -241,11 +248,11 @@
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="2610" y="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1602122201591" />
-    <state x="577" y="146" key="CommitChangelistDialog2" timestamp="1605082627714">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state x="2497" y="237" key="CommitChangelistDialog2" timestamp="1605166409915">
+      <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605082627714" />
-    <state x="2497" y="237" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604887739329" />
+    <state x="2497" y="237" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1605166409915" />
     <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1601017746212">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -291,11 +298,11 @@
     </state>
     <state x="461" y="224" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605062819978" />
     <state x="2381" y="307" key="SettingsEditor/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604888244726" />
-    <state x="552" y="312" key="Vcs.Push.Dialog.v2" timestamp="1605082629974">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state x="2472" y="386" key="Vcs.Push.Dialog.v2" timestamp="1605166412313">
+      <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605082629974" />
-    <state x="2472" y="386" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1604887742030" />
+    <state x="2472" y="386" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1605166412313" />
     <state x="2588" y="266" width="594" height="721" key="find.popup" timestamp="1604897897139">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>

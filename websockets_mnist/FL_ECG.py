@@ -379,14 +379,6 @@ def test(model, test_loader, batch_size, criterion, train_on_gpu):
         )
 
 
-def convert_to_dataset(x, y):
-    data = []
-    for i in range(len(x)):
-        data.append([x[i], y[i]])
-
-    return data
-
-
 def main():
     args = define_and_get_arguments()
 
@@ -449,7 +441,6 @@ def main():
                              num_workers=0, drop_last=True)
 
     model = Net(input_features=1, output_dim=5).to(device)
-    # model = Net2().to(device)
     criterion = nn.NLLLoss()
 
     for epoch in range(1, args.epochs + 1):

@@ -94,25 +94,6 @@ class Net(nn.Module):
         return self.softmax(D2)
 
 
-class Net2(nn.Module):
-    def __init__(self):
-        super(Net2, self).__init__()
-        self.conv1 = nn.Conv2d(1, 20, 5, 1)
-        self.conv2 = nn.Conv2d(20, 50, 5, 1)
-        self.fc1 = nn.Linear(4 * 4 * 50, 500)
-        self.fc2 = nn.Linear(500, 10)
-
-    def forward(self, x):
-        x = F.relu(self.conv1(x))
-        x = F.max_pool2d(x, 2, 2)
-        x = F.relu(self.conv2(x))
-        x = F.max_pool2d(x, 2, 2)
-        x = x.view(-1, 4 * 4 * 50)
-        x = F.relu(self.fc1(x))
-        x = self.fc2(x)
-        return F.log_softmax(x, dim=1)
-
-
 def process_data():
     # second version of adding random noise (Amplify and Stretch)
     def stretch(x):
@@ -252,9 +233,6 @@ def train_on_batches(worker, batches, model_in, device, criterion, lr=0.001):
         loss_local = False
         data, target = data.to(device), target.to(device)
 
-        if batch_idx == 9999:
-            print(data.get(), target.get())
-
         # clear the gradients of all optimized variables
         optimizer.zero_grad()
         # forward pass: compute predicted outputs by passing inputs to the model
@@ -302,7 +280,7 @@ def get_next_batches(fdataloader: sy.FederatedDataLoader, nr_batches: int):
 
 
 def train(
-        model, device, federated_train_loader, lr, federate_after_n_batches, abort_after_one=False
+        model, device, federated_train_loader, lr, federate_after_n_batches, criterion, abort_after_one=False
 ):
     model.train()
 
@@ -310,7 +288,6 @@ def train(
 
     models = {}
     loss_values = {}
-    criterion = nn.NLLLoss()
 
     iter(federated_train_loader)  # initialize iterators
     batches = get_next_batches(federated_train_loader, nr_batches)
@@ -323,12 +300,12 @@ def train(
         data_for_all_workers = True
         for worker in batches:
             curr_batches = batches[worker]
-            if len(curr_batches) < 50:
-                data_for_all_workers = False
-            elif curr_batches:
+            if curr_batches:
                 models[worker], loss_values[worker] = train_on_batches(
                     worker, curr_batches, model, device, criterion, lr
                 )
+            else:
+                data_for_all_workers = False
         counter += nr_batches
 
         if not data_for_all_workers:
@@ -342,27 +319,64 @@ def train(
     return model
 
 
-def test(model, device, test_loader):
+def test(model, test_loader, batch_size, criterion, train_on_gpu):
+    # Specify the heartbeat classes from above
+    classes = {
+        0: 'N - Normal Beat',
+        1: 'S - Supraventricular premature or ectopic beat',
+        2: 'V - Premature ventricular contraction',
+        3: 'F - Fusion of ventricular and normal beat',
+        4: 'Q - Unclassified beat'}
+
+    # track test loss
+    test_loss = 0.0
+    class_correct = list(0. for i in range(5))
+    class_total = list(0. for i in range(5))
+
     model.eval()
-    test_loss = 0
-    correct = 0
-    with torch.no_grad():
-        for data, target in test_loader:
-            data, target = data.to(device), target.to(device)
-            output = model(data)
-            test_loss += F.nll_loss(output, target, reduction="sum").item()  # sum up batch loss
-            pred = output.argmax(1, keepdim=True)  # get the index of the max log-probability
-            correct += pred.eq(target.view_as(pred)).sum().item()
 
-    test_loss /= len(test_loader.dataset)
+    # iterate over test data
+    for data, target in test_loader:
+        # move tensors to GPU if CUDA is available
+        if train_on_gpu:
+            data, target = data.cuda(), target.cuda()
+        # forward pass: compute predicted outputs by passing inputs to the model
+        output = model(data.float())
+        # calculate the batch loss
+        loss = criterion(output, target.long())
+        # update test loss
+        test_loss += loss.item() * data.size(0)
+        # convert output probabilities to predicted class
+        _, pred = torch.max(output, 1)
+        # compare predictions to true label
+        correct_tensor = pred.eq(target.data.view_as(pred))
+        correct = np.squeeze(correct_tensor.numpy()) if not train_on_gpu else np.squeeze(correct_tensor.cpu().numpy())
+        # calculate test accuracy for each object class
+        for i in range(batch_size):
+            label = target.data[i].int()
+            class_correct[label] += correct[i].item()
+            class_total[label] += 1
 
-    logger.debug("\n")
-    accuracy = 100.0 * correct / len(test_loader.dataset)
+    # average test loss
+    test_loss = test_loss / len(test_loader.dataset)
+    print('Test Loss: {:.6f}\n'.format(test_loss))
+
+    for i in range(5):
+        if class_total[i] > 0:
+            logger.info('Test Accuracy of %5s: %2d%% (%2d/%2d)' % (
+                classes[i], 100 * class_correct[i] / class_total[i],
+                np.sum(class_correct[i]), np.sum(class_total[i]))
+                )
+        else:
+            logger.info(
+                'Test Accuracy of %5s: N/A (no training examples)' % (classes[i])
+                )
+
     logger.info(
-        "Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n".format(
-            test_loss, correct, len(test_loader.dataset), accuracy
+        '\nTest Accuracy (Overall): %2d%% (%2d/%2d)' % (
+        100. * np.sum(class_correct) / np.sum(class_total),
+        np.sum(class_correct), np.sum(class_total))
         )
-    )
 
 
 def convert_to_dataset(x, y):
@@ -436,12 +450,13 @@ def main():
 
     model = Net(input_features=1, output_dim=5).to(device)
     # model = Net2().to(device)
-
+    criterion = nn.NLLLoss()
 
     for epoch in range(1, args.epochs + 1):
         logger.info("Starting epoch %s/%s", epoch, args.epochs)
-        model = train(model, device, federated_train_loader, args.lr, args.federate_after_n_batches)
-        test(model, device, test_loader)
+        model = train(model, device, federated_train_loader, args.lr,
+                      args.federate_after_n_batches, criterion=criterion)
+        test(model, test_loader, args.batch_size, criterion=criterion, train_on_gpu=use_cuda)
 
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")

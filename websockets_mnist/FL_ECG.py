@@ -300,11 +300,11 @@ def train(
         data_for_all_workers = True
         for worker in batches:
             curr_batches = batches[worker]
-            if curr_batches:
+            try:
                 models[worker], loss_values[worker] = train_on_batches(
                     worker, curr_batches, model, device, criterion, lr
                 )
-            else:
+            except RuntimeError:
                 data_for_all_workers = False
         counter += nr_batches
 

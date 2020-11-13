@@ -34,7 +34,6 @@ class Net2(nn.Module):
 
     def forward(self, x):
         # add sequence of convolutional and max pooling layers
-
         inp = x.view(32, -1, 187)
         C = self.conv0(inp)
 

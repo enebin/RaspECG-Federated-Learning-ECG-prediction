@@ -123,9 +123,12 @@ def test_with_predata():
     # correct this one
     # N, Q, V, S, F (Tested one)
     # N, S, V, F, Q (Trained one)
-    target = 4
+    target = 0
     pre_temp_data = c.iloc[target, :187]
     pre_temp_label = c.iloc[target, :188]
+
+    plt.plot(pre_temp_data)
+    plt.show()
 
     real_data = np.zeros((32, 187))
     for i in range(32):
@@ -144,24 +147,45 @@ def test_with_predata():
 
 
 def test_with_realdata():
-    df = pd.read_csv(ind_data, header=None)
+    df = np.loadtxt(ind_data, delimiter = ",")[0]
+    shape = df.shape[0]
+    print(df[0], shape)
+    if shape > 187:
+        while df.shape[0] > 187:
+            column = df.shape[0]
+            remain = 20
+
+            for i in list(range(0, column)):
+                try:
+                    if i % remain == 0:
+
+                            df = df.drop(df.columns[i], axis=1)
+                            if df.shape[0] == 187:
+                                break
+                except IndexError:
+                    break
+    elif shape < 187:
+        idx = 1
+
+        while df.shape[0] < 187:
+            column = df.shape[0]
+            remain = 2
+
+            for i in list(range(0, (column - 1)*2)):
+                if i % remain == 0 and i != 0:
+                    value = ((df[i-1] + df[i]) / 2)
+                    print(value)
+                    df = np.insert(df, i, value, axis=0)
+                    idx += 1
+
+                    print(i, df.shape[0], idx)
+                    print(df)
+                    if df.shape[0] == 187:
+                        break
+
     print(df.shape)
 
-    while df.shape[1] > 187:
-        column = df.shape[1]
-        remain = 20
 
-        for i in list(range(0, column)):
-            try:
-                if i % remain == 0:
-
-                        df = df.drop(df.columns[i], axis=1)
-                        if df.shape[1] == 187:
-                            break
-            except IndexError:
-                break
-
-    print(df.shape)
-
-
-test_with_realdata()
+if __name__ == "__main__":
+    test_with_predata()
+    # test_with_realdata()

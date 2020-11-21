@@ -25,6 +25,54 @@ random_seed = 1024
 np.random.seed(random_seed)
 
 
+class SplitNN(torch.nn.Module):
+    def __init__(self, models, optimizers):
+        self.models = models
+        self.optimizers = optimizers
+        self.outputs = [None] * len(self.models)
+        self.inputs = [None] * len(self.models)
+        super().__init__()
+
+    def forward(self, x):
+        self.inputs[0] = x
+        self.outputs[0] = self.models[0](self.inputs[0])
+
+        for i in range(1, len(self.models)):
+            self.inputs[i] = self.outputs[i - 1].detach().requires_grad_()
+            if self.outputs[i - 1].location != self.models[i].location:
+                self.inputs[i] = self.inputs[i].move(self.models[i].location).requires_grad_()
+            self.outputs[i] = self.models[i](self.inputs[i])
+
+        return self.outputs[-1]
+
+    def backward(self):
+        for i in range(len(self.models) - 2, -1, -1):
+            grad_in = self.inputs[i + 1].grad.copy()
+            if self.outputs[i].location != self.inputs[i + 1].location:
+                grad_in = grad_in.move(self.outputs[i].location)
+            self.outputs[i].backward(grad_in)
+
+    def zero_grads(self):
+        for opt in self.optimizers:
+            opt.zero_grad()
+
+    def step(self):
+        for opt in self.optimizers:
+            opt.step()
+
+    def train(self):
+        for model in self.models:
+            model.train()
+
+    def eval(self):
+        for model in self.models:
+            model.eval()
+
+    @property
+    def location(self):
+        return self.models[0].location if self.models and len(self.models) else None
+
+
 # define the 1st architecture (from the paper)
 class Net(nn.Module):
     def __init__(self, input_features, output_dim):
@@ -45,6 +93,7 @@ class Net(nn.Module):
 
     def forward(self, x):
         # add sequence of convolutional and max pooling layers
+
         inp = x.view(32, -1, 187)
         C = self.conv0(inp)
 
@@ -222,7 +271,6 @@ def define_and_get_arguments(args=sys.argv[1:]):
 
 def train_on_batches(worker, batches, model_in, device, criterion, lr=0.001):
     model = model_in.copy()
-    # optimizer = optim.Adamax(model.parameters(), lr=lr)
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
     model = model.float()
@@ -427,9 +475,6 @@ def main():
     split = int(np.floor(test_size * num_train))
     train_idx, test_idx = indices[split:], indices[:split]
 
-    print(type(obs_resampled_with_noise_2[train_idx]), type(labels_resampled_factorized[train_idx]))
-    print(obs_resampled_with_noise_2[train_idx].shape, labels_resampled_factorized[train_idx].shape)
-    print(labels_resampled_factorized[train_idx])
     federated_train_dataset = D.TensorDataset(torch.tensor(obs_resampled_with_noise_2[train_idx]),
                                               torch.tensor(labels_resampled_factorized[train_idx]))
 

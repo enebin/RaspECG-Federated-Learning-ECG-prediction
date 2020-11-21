@@ -216,9 +216,9 @@ def main():
         charlie = VirtualWorker(id="charlie", hook=hook, verbose=args.verbose)
     # 웹소켓작업자 사용시 이곳으로 분기
     else:
-        a_kwargs_websocket = {"host": "192.168.0.52", "hook": hook}
-        b_kwargs_websocket = {"host": "192.168.0.53", "hook": hook}
-        c_kwargs_websocket = {"host": "192.168.0.54", "hook": hook}
+        a_kwargs_websocket = {"host": "192.168.0.57", "hook": hook}
+        b_kwargs_websocket = {"host": "192.168.0.58", "hook": hook}
+        c_kwargs_websocket = {"host": "192.168.0.59", "hook": hook}
 
         baseport = 10002
         alice = WebsocketClientWorker(id="alice", port=baseport, **a_kwargs_websocket)

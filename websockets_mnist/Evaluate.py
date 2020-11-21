@@ -147,7 +147,7 @@ def test_with_predata():
 
 
 def test_with_realdata():
-    df = np.loadtxt(ind_data, delimiter = ",")[0]
+    df = np.loadtxt(ind_data, dtype=np.float64, delimiter = ",")[0]
     shape = df.shape[0]
     print(df[0], shape)
     if shape > 187:
@@ -187,5 +187,5 @@ def test_with_realdata():
 
 
 if __name__ == "__main__":
-    test_with_predata()
-    # test_with_realdata()
+    # test_with_predata()
+    test_with_realdata()

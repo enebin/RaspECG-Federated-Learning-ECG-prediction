@@ -114,18 +114,22 @@ mitbih_test_loc = "C:/Users/Lee/Downloads/archive/mitbih_train.csv"
 ind_data = "./data/temp_data.csv"
 
 
-def test_with_predata():
-    test_df = pd.read_csv(mitbih_test_loc, header=None)
-    test_df = test_df.astype(float)
-    c = test_df.groupby(187, group_keys=False).apply(lambda test_df : test_df.sample(1))
-    d = test_df.groupby(187, group_keys=False)
+def test_with_predata(df, data=True):
+    if not data:
+        test_df = pd.read_csv(mitbih_test_loc, header=None)
+        test_df = test_df.astype(float)
+        c = test_df.groupby(187, group_keys=False).apply(lambda test_df : test_df.sample(1))
+        d = test_df.groupby(187, group_keys=False)
 
-    # correct this one
-    # N, Q, V, S, F (Tested one)
-    # N, S, V, F, Q (Trained one)
-    target = 0
-    pre_temp_data = c.iloc[target, :187]
-    pre_temp_label = c.iloc[target, :188]
+        # correct this one
+        # N, Q, V, S, F (Tested one)
+        # N, S, V, F, Q (Trained one)
+        target = 0
+        pre_temp_data = c.iloc[target, :187]
+        pre_temp_label = c.iloc[target, :188]
+        print(pre_temp_data)
+    else:
+        pre_temp_data = df
 
     plt.plot(pre_temp_data)
     plt.show()
@@ -147,9 +151,31 @@ def test_with_predata():
 
 
 def test_with_realdata():
-    df = np.loadtxt(ind_data, dtype=np.float64, delimiter = ",")[0]
+    def translate(value, leftMin, leftMax, rightMin, rightMax):
+        # Figure out how 'wide' each range is
+        leftSpan = leftMax - leftMin
+        rightSpan = rightMax - rightMin
+
+        # Convert the left range into a 0-1 range (float)
+        valueScaled = float(value - leftMin) / float(leftSpan)
+
+        # Convert the 0-1 range into a value in the right range.
+        return round(rightMin + (valueScaled * rightSpan), 3)
+
+    df = np.loadtxt(ind_data, dtype='str', delimiter = ",")[0]
+    df = df.astype(int)
+    df = df / 100
     shape = df.shape[0]
-    print(df[0], shape)
+    print("First value is:", df[0], "Length is:", shape)
+
+    max_val = np.max(df)
+    min_val = np.min(df)
+
+    lambda_func = lambda t: translate(t, min_val, max_val, 0, 1)
+    df = np.array([lambda_func(elements) for elements in df])
+
+    print(df)
+
     if shape > 187:
         while df.shape[0] > 187:
             column = df.shape[0]
@@ -158,7 +184,6 @@ def test_with_realdata():
             for i in list(range(0, column)):
                 try:
                     if i % remain == 0:
-
                             df = df.drop(df.columns[i], axis=1)
                             if df.shape[0] == 187:
                                 break
@@ -174,16 +199,15 @@ def test_with_realdata():
             for i in list(range(0, (column - 1)*2)):
                 if i % remain == 0 and i != 0:
                     value = ((df[i-1] + df[i]) / 2)
-                    print(value)
                     df = np.insert(df, i, value, axis=0)
                     idx += 1
 
-                    print(i, df.shape[0], idx)
-                    print(df)
+                    # print(df)
                     if df.shape[0] == 187:
                         break
 
     print(df.shape)
+    test_with_predata(df)
 
 
 if __name__ == "__main__":

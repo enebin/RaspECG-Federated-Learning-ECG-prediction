@@ -24,6 +24,8 @@ LOG_INTERVAL = 25
 random_seed = 1024
 np.random.seed(random_seed)
 
+accr_list = []
+loss_list = []
 
 # define the 1st architecture (from the paper)
 class Net(nn.Module):
@@ -382,6 +384,9 @@ def test(model, test_loader, batch_size, criterion, train_on_gpu):
         np.sum(class_correct), np.sum(class_total))
         )
 
+    accr_list.append(100. * np.sum(class_correct) / np.sum(class_total))
+    loss_list.append(test_loss)
+
 
 def main():
     args = define_and_get_arguments()
@@ -470,3 +475,5 @@ if __name__ == "__main__":
     websockets_logger.addHandler(logging.StreamHandler())
 
     main()
+
+    print(accr_list, loss_list)

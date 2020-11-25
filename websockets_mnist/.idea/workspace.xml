@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3256e16c-88b6-4aa3-9698-3c1f5fb199d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Get_graph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ECG_source/ECG(torch).py" beforeDir="false" afterPath="$PROJECT_DIR$/ECG_source/ECG(torch).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FL_ECG.py" beforeDir="false" afterPath="$PROJECT_DIR$/FL_ECG.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +43,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\FLs" />
-      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\ECG_source" />
       <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\Workers" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\FLs" />
+      <recent name="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.Evaluate">
+  <component name="RunManager" selected="Python.ECG(torch)">
     <configuration name="ECG(torch)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,7 +117,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="run_websocket_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Get_graph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="websockets_mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -126,7 +129,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Lee\Documents\GitHub\FED\websockets_mnist\FLs\run_websocket_client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Get_graph.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ECG(torch)" />
+        <item itemvalue="Python.Get_graph" />
         <item itemvalue="Python.Evaluate" />
         <item itemvalue="Python.FL_ECG" />
         <item itemvalue="Python.run_websocket_client(0.2.3)" />
-        <item itemvalue="Python.ECG(torch)" />
-        <item itemvalue="Python.run_websocket_client" />
       </list>
     </recent_temporary>
   </component>
@@ -329,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606026641234</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="m">
+      <created>1606033778971</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606033778971</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -338,11 +348,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="m" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="48" y="142" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605859303556">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606282304902">
+      <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="48" y="142" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605859303556" />
-    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1600741813853" />
+    <state x="2334" y="316" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606282304902" />
     <state x="2647" y="447" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604890335827">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
@@ -352,35 +362,35 @@
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="2610" y="372" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1602122201591" />
-    <state x="2497" y="237" key="CommitChangelistDialog2" timestamp="1606026640364">
+    <state x="2497" y="237" key="CommitChangelistDialog2" timestamp="1606033778292">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="577" y="146" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605246761498" />
-    <state x="2497" y="237" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606026640364" />
+    <state x="2497" y="237" key="CommitChangelistDialog2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606033778292" />
     <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1601017746212">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="334" key="FileChooserDialogImpl/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1601017746212" />
-    <state width="1899" height="233" key="GridCell.Tab.0.bottom" timestamp="1606025419061">
+    <state width="1899" height="454" key="GridCell.Tab.0.bottom" timestamp="1606283360423">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state width="1899" height="360" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605873703451" />
-    <state width="1899" height="233" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606025419061" />
-    <state width="1899" height="233" key="GridCell.Tab.0.center" timestamp="1606025419061">
+    <state width="1899" height="454" key="GridCell.Tab.0.bottom/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606283360423" />
+    <state width="1899" height="454" key="GridCell.Tab.0.center" timestamp="1606283360423">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state width="1899" height="360" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605873703450" />
-    <state width="1899" height="233" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606025419061" />
-    <state width="1899" height="233" key="GridCell.Tab.0.left" timestamp="1606025419061">
+    <state width="1899" height="454" key="GridCell.Tab.0.center/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606283360423" />
+    <state width="1899" height="454" key="GridCell.Tab.0.left" timestamp="1606283360423">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state width="1899" height="360" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605873703450" />
-    <state width="1899" height="233" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606025419061" />
-    <state width="1899" height="233" key="GridCell.Tab.0.right" timestamp="1606025419061">
+    <state width="1899" height="454" key="GridCell.Tab.0.left/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606283360423" />
+    <state width="1899" height="454" key="GridCell.Tab.0.right" timestamp="1606283360423">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state width="1899" height="360" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605873703451" />
-    <state width="1899" height="233" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606025419061" />
+    <state width="1899" height="454" key="GridCell.Tab.0.right/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606283360423" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1605961382762">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
@@ -406,11 +416,11 @@
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1605953806362" />
-    <state x="2472" y="386" key="Vcs.Push.Dialog.v2" timestamp="1606026643478">
+    <state x="2472" y="386" key="Vcs.Push.Dialog.v2" timestamp="1606033780133">
       <screen x="1920" y="106" width="1920" height="1040" />
     </state>
     <state x="552" y="312" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@0.0.1920.1160" timestamp="1605246763056" />
-    <state x="2472" y="386" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606026643478" />
+    <state x="2472" y="386" key="Vcs.Push.Dialog.v2/1920.106.1920.1040/0.0.1920.1160@1920.106.1920.1040" timestamp="1606033780133" />
     <state x="669" y="178" width="609" height="804" key="find.popup" timestamp="1605859449490">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>

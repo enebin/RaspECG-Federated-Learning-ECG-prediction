@@ -10,8 +10,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data.sampler import SubsetRandomSampler
 
+import time
+ss = time.time()
+
 random_seed = 1024
 np.random.seed(random_seed)
+
+accr_list = []
+loss_list = []
 
 
 # define the 1st architecture (from the paper)
@@ -224,7 +230,63 @@ else:
     print('CUDA is available!  Training on GPU ...')
 
 # number of epochs
-num_epochs = 30
+num_epochs = 11
+
+
+def evaluate_model(model, test_loader, criterion):
+    # Specify the heartbeat classes from above
+    classes = {
+        0: 'N - Normal Beat',
+        1: 'S - Supraventricular premature or ectopic beat',
+        2: 'V - Premature ventricular contraction',
+        3: 'F - Fusion of ventricular and normal beat',
+        4: 'Q - Unclassified beat'}
+
+    # track test loss
+    test_loss = 0.0
+    class_correct = list(0. for i in range(5))
+    class_total = list(0. for i in range(5))
+
+    model.eval()
+    # iterate over test data
+    for data, target in test_loader:
+        # move tensors to GPU if CUDA is available
+        if train_on_gpu:
+            data, target = data.cuda(), target.cuda()
+        # forward pass: compute predicted outputs by passing inputs to the model
+        output = model(data.float())
+        # calculate the batch loss
+        loss = criterion(output, target.long())
+        # update test loss
+        test_loss += loss.item() * data.size(0)
+        # convert output probabilities to predicted class
+        _, pred = torch.max(output, 1)
+        # compare predictions to true label
+        correct_tensor = pred.eq(target.data.view_as(pred))
+        correct = np.squeeze(correct_tensor.numpy()) if not train_on_gpu else np.squeeze(correct_tensor.cpu().numpy())
+        # calculate test accuracy for each object class
+        for i in range(batch_size):
+            label = target.data[i].int()
+            class_correct[label] += correct[i].item()
+            class_total[label] += 1
+
+    # average test loss
+    test_loss = test_loss / len(test_loader.dataset)
+    print('Test Loss: {:.6f}\n'.format(test_loss))
+
+    for i in range(5):
+        if class_total[i] > 0:
+            print('Test Accuracy of %5s: %2d%% (%2d/%2d)' % (
+                classes[i], 100 * class_correct[i] / class_total[i],
+                np.sum(class_correct[i]), np.sum(class_total[i])))
+        else:
+            print('Test Accuracy of %5s: N/A (no training examples)' % (classes[i]))
+
+    print('\nTest Accuracy (Overall): %2d%% (%2d/%2d)' % (
+        100. * np.sum(class_correct) / np.sum(class_total),
+        np.sum(class_correct), np.sum(class_total)))
+
+    accr_list.append(100. * np.sum(class_correct) / np.sum(class_total))
 
 
 def train_by_model_and_custom_loader(model, train_loader, criterion, optimizer, n_epochs, train_on_gpu):
@@ -268,6 +330,8 @@ def train_by_model_and_custom_loader(model, train_loader, criterion, optimizer, 
 
         # print training/validation statistics
         print('Epoch: {} \tTraining Loss: {:.6f}'.format(epoch, train_loss))
+        loss_list.append(train_loss)
+        evaluate_model(model_4, test_loader_2, criterion)
 
     return train_losses
 
@@ -336,6 +400,8 @@ def evaluate_model(model, test_loader, criterion):
         100. * np.sum(class_correct) / np.sum(class_total),
         np.sum(class_correct), np.sum(class_total)))
 
+    accr_list.append(100. * np.sum(class_correct) / np.sum(class_total))
+
 
 evaluate_model(model_4, test_loader_2, criterion)
 
@@ -346,3 +412,10 @@ losses = {
 plt.plot('model', data=losses)
 plt.title("Validation Losses of All Models")
 plt.legend(losses.keys())
+
+ee = time.time() - ss
+
+
+print(accr_list, loss_list)
+print("time", ee)
+plt.show()

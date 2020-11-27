@@ -76,7 +76,7 @@ server = start_proc(WebsocketServerWorker, kwargs)
 
 - 실행시 받은 인자를 토대로 [start_proc]()을 실행합니다.
 
-# run_websocket_server(0.2.3).py
+# FL_ECG.py
 
 ### 역할
 
